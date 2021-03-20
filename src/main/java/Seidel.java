@@ -12,9 +12,6 @@ public class Seidel {
                 }
             }
         }
-        if (isGraphAllOne) {
-            return graph;
-        }
 
         boolean isGraphAllZeros = true;
         for (int i = 0; i < n; i++) {
@@ -25,7 +22,7 @@ public class Seidel {
                 }
             }
         }
-        if (isGraphAllZeros) {
+        if (isGraphAllZeros || isGraphAllOne) {
             return graph;
         }
 
@@ -46,11 +43,6 @@ public class Seidel {
         int[][] distances = seidelAlgorithm(matrixA, n);
         int[][] matrixB = boolMatrixMultiplication(distances, graph, n);
 
-        //degree = [sum(A[i][j] for j in range(n)) for i in range(n)]
-        //    D = matrix([
-        //        [2 * T[i][j] if X[i][j] >= T[i][j] * degree[j] else 2 * T[i][j] - 1 for j in range(n)]
-        //    for i in range(n)])
-        //    return D
         int[] degree = new int[n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
